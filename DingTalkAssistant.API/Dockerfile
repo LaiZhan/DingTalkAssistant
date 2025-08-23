@@ -1,5 +1,5 @@
 ﻿FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS base
-USER $APP_UID
+USER 1000
 WORKDIR /app
 EXPOSE 8080
 EXPOSE 8081
@@ -15,7 +15,7 @@ RUN dotnet build "./DingTalkAssistant.API.csproj" -c $BUILD_CONFIGURATION -o /ap
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./DingTalkAssistant.API.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./DingTalkAssistant.API.csproj" -c $BUILD_CONFIGURATION -o /app/publish --self-contained false
 
 FROM base AS final
 WORKDIR /app

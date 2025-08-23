@@ -1,0 +1,7 @@
+﻿services:
+  dingtalkassistant.api:
+    image: dingtalkassistant.api
+    build:
+      context: .
+      dockerfile: DingTalkAssistant.API/Dockerfile
+

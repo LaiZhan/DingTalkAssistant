@@ -1,0 +1,6 @@
+@DingTalkAssistant.API_HostAddress = http://localhost:5098
+
+GET {{DingTalkAssistant.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

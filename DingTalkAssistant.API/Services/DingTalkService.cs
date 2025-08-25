@@ -1,6 +1,7 @@
 using DingTalk.Api;
 using DingTalk.Api.Request;
 using DingTalk.Api.Response;
+using Newtonsoft.Json;
 
 namespace DingTalkAssistant.API.Services;
 
@@ -26,7 +27,7 @@ public class DingTalkService : IDingTalkService
         OapiRobotSendRequest request = new()
         {
             Msgtype = "text",
-            Text = replyContent,
+            Text = JsonConvert.SerializeObject(new { content = replyContent }),
             At_ = new OapiRobotSendRequest.AtDomain { AtUserIds = atUserIds, IsAtAll = false },
         };
         OapiRobotSendResponse response = client.Execute(request);

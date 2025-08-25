@@ -39,9 +39,9 @@ public class DingTalkController : Controller
             )
             {
                 // Call the service to get the reply content
-                var atUserIds = string.IsNullOrWhiteSpace(request.SenderStaffId)
+                var atUserIds = string.IsNullOrWhiteSpace(request.SenderId)
                     ? []
-                    : new List<string> { request.SenderStaffId };
+                    : new List<string> { request.SenderId };
 
                 await _dingTalkService.ReplyMesasgeBySessionWebhook(
                     request.SessionWebhook,

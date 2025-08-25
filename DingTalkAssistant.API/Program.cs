@@ -1,3 +1,4 @@
+using DingTalkAssistant.API.Services;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +12,8 @@ builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "DingTalkAssistant.API", Version = "v1" });
 });
+
+builder.Services.AddScoped<IDingTalkService, DingTalkService>();
 
 var app = builder.Build();
 

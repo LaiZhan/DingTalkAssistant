@@ -43,6 +43,7 @@ public class DingTalkController : Controller
                     ? []
                     : new List<string> { request.SenderId };
 
+                atUserIds = ["011322491145279"];
                 await _dingTalkService.ReplyMesasgeBySessionWebhook(
                     request.SessionWebhook,
                     replyContent,

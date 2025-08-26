@@ -12,6 +12,8 @@ public interface IDingTalkService
         string replyContent,
         List<string> atUserIds
     );
+
+    Task<string> GetAccessToken(string appkey, string appsecret);
 }
 
 public class DingTalkService : IDingTalkService
@@ -34,5 +36,22 @@ public class DingTalkService : IDingTalkService
 
         Console.WriteLine($"DingTalk reply response: {response.Body}");
         await Task.CompletedTask;
+    }
+
+    public async Task<string> GetAccessToken(string appkey, string appsecret)
+    {
+        // Implementation for getting access token
+        DefaultDingTalkClient defaultDingTalkClient = new("https://oapi.dingtalk.com/gettoken");
+        // IDingTalkClient client = defaultDingTalkClient;
+        OapiGettokenRequest req = new OapiGettokenRequest
+        {
+            Appkey = appkey,
+            Appsecret = appsecret,
+        };
+        req.SetHttpMethod("GET");
+        OapiGettokenResponse rsp = defaultDingTalkClient.Execute(req);
+
+        await Task.CompletedTask;
+        return rsp.AccessToken;
     }
 }
